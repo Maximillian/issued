@@ -35,7 +35,7 @@ def test_layout_styles_support_full_width_and_resizable_cover_grids():
     assert 'html[data-borderless="true"] .cover-grid' in styles
     assert 'html[data-borderless="true"] .comic-card-details' in styles
     assert 'html[data-borderless="true"] .folder-card-details' in styles
-    assert 'html[data-hide-file-types="true"] .comic-card-extension' in styles
+    assert 'html[data-hide-file-types="true"] .comic-filename-extension' in styles
     assert "--cover-min-width" in styles
 
 

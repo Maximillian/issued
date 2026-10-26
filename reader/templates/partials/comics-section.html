@@ -1,8 +1,4 @@
-{% macro comic_filename_text(filename) -%}
-{%- set stem, dot, suffix = filename.rpartition('.') -%}
-{%- if dot and stem -%}{{ stem }}<span class="comic-card-extension">{{ dot }}{{ suffix }}</span>{%- else -%}{{ filename }}{%- endif -%}
-{%- endmacro %}
-
+{% from 'macros/comic-filename.html' import comic_filename, comic_filename_text %}
 {% macro comic_table(comics_list, request) %}
 <div class="comics-table-wrap overflow-x-auto rounded-2xl border border-gray-100 bg-white shadow-md">
   <table class="w-full min-w-[640px] border-collapse text-sm">
@@ -98,10 +94,6 @@
 </div>
 {% endmacro %}
 
-{% macro comic_card_filename(filename, title_class='line-clamp-2 block text-center text-sm font-medium text-gray-800') -%}
-<span class="{{ title_class }}">{{ comic_filename_text(filename) }}</span>
-{%- endmacro %}
-
 <section class="mb-8" id="comics-section" data-is-search="{{ 'true' if is_search else 'false' }}">
   <div class="mb-4 flex items-center justify-between">
     <h2 class="text-lg font-bold text-gray-800">
@@ -174,7 +166,7 @@
           </div>
           <a href="{{ url_path(request, 'reader_view', comic_uuid=c.uuid) }}"
             class="comic-card-details block bg-white p-3">
-            {{ comic_card_filename(c.filename) }}
+            {{ comic_filename(c.filename) }}
             {% if c.get('page_count') and c.page_count > 0 %}
             <span class="mt-1 block text-center text-xs text-gray-500">{{ c.page_count }} pages</span>
             {% endif %}
@@ -222,7 +214,7 @@
         </div>
         <a href="{{ url_path(request, 'reader_view', comic_uuid=c.uuid) }}"
           class="comic-card-details block bg-white p-3">
-          {{ comic_card_filename(c.filename) }}
+          {{ comic_filename(c.filename) }}
           {% if c.get('page_count') and c.page_count > 0 %}
           <span class="mt-1 block text-center text-xs text-gray-500">{{ c.page_count }} pages</span>
           {% endif %}

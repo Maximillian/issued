@@ -832,7 +832,7 @@ html[data-borderless="true"] .folder-preview-images {
   padding: 0 !important;
 }
 
-html[data-hide-file-types="true"] .comic-card-extension {
+html[data-hide-file-types="true"] .comic-filename-extension {
   display: none;
 }
 
